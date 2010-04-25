@@ -7,16 +7,6 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.gem 'freelancing-god-thinking-sphinx', :version => '>=1.1.24', :lib => 'thinking_sphinx',  :source => 'http://gems.github.com'
-  config.gem 'mislav-will_paginate',            :version => '>=2.3.11', :lib => 'will_paginate',    :source => 'http://gems.github.com'
-  config.gem 'jchupp-is_paranoid',              :version => '>=0.8.2',  :lib => 'is_paranoid',      :source => 'http://gems.github.com'
-  config.gem 'javan-whenever',                  :version => '>=0.3.6',  :lib => false,              :source => 'http://gems.github.com'
-  config.gem 'gravtastic',                      :version => '>=2.1.3'
-  config.gem 'authlogic',                       :version => '>=2.1.1'
-  config.gem 'scrobbler',                       :version => '>=0.2.3'
-  config.gem 'bluecloth',                       :version => '>=2.0.5'
-  config.gem 'haml',                            :version => '>=2.2.2'
-
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

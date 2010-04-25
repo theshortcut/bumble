@@ -14,3 +14,4 @@ public/stylesheets/*.css
 public/sitemap*
 tmp/**/*
 tmp/restart.txt
+.bundle

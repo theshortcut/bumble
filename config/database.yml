@@ -19,5 +19,5 @@ production:
   adapter: mysql
   database: bumble_production
   username: root
-  password: r93npx4h
+  password: 
   encoding: utf8
