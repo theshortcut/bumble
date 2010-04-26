@@ -73,11 +73,8 @@ class PostsController < ApplicationController
   def current_objects
     @current_object ||= current_model.paginate  :page => params[:page],
                                                 :order => 'published_at DESC',
-                                                :per_page => per_page
-  end
-
-  def per_page
-    (iphone? ? 5 : 10)
+                                                :per_page => (iphone? ? 5 : 10),
+                                                :include => :comments
   end
 
   def current_model

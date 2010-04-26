@@ -55,7 +55,6 @@ class Post < ActiveRecord::Base
 
     set_property :delta => true
   end
-
   def format_published_at
     #self.published_at = Time.now if self.published_at < Time.now
     # this is completely unecessary as far as I can tell.
