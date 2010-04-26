@@ -8,7 +8,10 @@ class FeedUpdater
       channel = Feedzirra::Feed.fetch_and_parse(feed.feed_url)
       changed = false
       channel.entries.each do |item|
-        if item.published > feed.updated_at
+        # not sure what to do about this... we don't know any
+        # other way to verify that we haven't published it 
+        # before.
+        if !item.published.nil? && (item.published > feed.updated_at)
           # This is a new item.
           post = if item.url.nil?
                    Blog.new(:published_at => item.published, :publicly_viewable => true, :via => feed.link_url, :user => feed.user)
