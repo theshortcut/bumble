@@ -13,4 +13,4 @@
     - unless post.via.blank?
       %span.via
         Via
-        = link_to truncate(post.via, :length => 24), post.via
+        = link_to URI.parse(post.via).host.gsub(/^www\./, ''), post.via
