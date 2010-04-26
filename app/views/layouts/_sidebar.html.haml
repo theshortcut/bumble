@@ -5,6 +5,8 @@
     = submit_tag 'Search'
   %h3 Links
   %ul#links
+    - Feed.published.each do |feed|
+      %li= link_to feed.title, feed.link_url
     %li.feed= link_to "Feed", posts_path(:format => :atom)
     %li.email= mail_to CONTACT_EMAIL, "Email"
 

@@ -1,2 +1,5 @@
 %h2= link_to link.title, link.link_url, :rel => 'external'
-= markdown link.description
+-if link.body.nil?
+  = markdown link.description
+-else
+  = link.body

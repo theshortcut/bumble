@@ -57,6 +57,8 @@ class Post < ActiveRecord::Base
   end
 
   def format_published_at
-    self.published_at = Time.now if self.published_at < Time.now
+    #self.published_at = Time.now if self.published_at < Time.now
+    # this is completely unecessary as far as I can tell.
+    self.published_at
   end
 end
