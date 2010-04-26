@@ -121,7 +121,7 @@ h2
 
 .field
   :margin-bottom 5px
-  input[type='text'], input[type='search'], input[type='password'], textarea
+  input:not([type='checkbox']), textarea
     :width 98%
     :margin 0
     :padding 2px 2px
@@ -245,6 +245,7 @@ h2
       :border 1px solid #efefef
       :padding 5px
       :font-size 0.95em
+      :margin-bottom 10px
     .meta .via
       :float right
     &.preview
@@ -262,6 +263,12 @@ h2
   .photo
     :float left
     :margin 3px 5px 0 -50px
+    :border 1px solid #eee
+  &.author
+    :padding 10px 50px 0 0
+    .photo
+      :float right
+      :margin 3px -50px 0 0
 
 .link
   h2
@@ -292,10 +299,11 @@ input.image
     :-moz-border-radius 2px
     :-webkit-border-radius 2px
     :text-decoration none
-    &:hover, &:active
-      :background #ccc
     &.disabled
       :display none
+  a
+    &:hover, &:active
+      :background #ccc
 
 #sidebar
   :margin-left 60px
