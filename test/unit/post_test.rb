@@ -2,8 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + "/../test_helper.rb")
 
 class PostTest < ActiveSupport::TestCase
 
-  should_have_db_columns :title, :permalink, :type => :string
-  should_have_db_column  :user_id, :type => :integer
+  should have_db_column(:title).of_type(:string)
+  should have_db_column(:permalink).of_type(:string)
+
+  should have_db_column(:user_id).of_type(:integer)
+
   should_have_timestamps
 
   context "a post" do

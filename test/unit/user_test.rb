@@ -1,13 +1,25 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper.rb")
 
 class UserTest < ActiveSupport::TestCase
-  should_have_db_column :email, :crypted_password, :password_salt, :persistence_token, :type => :string, :null => false
-  should_have_db_column :current_login_ip, :last_login_ip, :first_name, :last_name, :type => :string
-  should_have_db_column :perishable_token, :type => :string
+  should have_db_column(:email).of_type(:string).with_options(:null => false)
+  should have_db_column(:crypted_password).of_type(:string).with_options(:null => false)
+  should have_db_column(:password_salt).of_type(:string).with_options(:null => false)
+  should have_db_column(:persistence_token).of_type(:string).with_options(:null => false)
 
-  should_have_db_columns :login_count, :failed_login_count, :type => :integer, :default => 0
+  should have_db_column(:current_login_ip).of_type(:string)
+  should have_db_column(:last_login_ip).of_type(:string)
+  should have_db_column(:first_name).of_type(:string)
+  should have_db_column(:last_name).of_type(:string)
+  should have_db_column(:perishable_token).of_type(:string)
 
-  should_have_db_columns :last_request_at, :current_login_at, :last_login_at, :activated_at, :type => :datetime
+  should have_db_column(:login_count).of_type(:integer).with_options(:default => 0)
+  should have_db_column(:failed_login_count).of_type(:integer).with_options(:default => 0)
+
+  should have_db_column(:last_request_at).of_type(:datetime)
+  should have_db_column(:current_login_at).of_type(:datetime)
+  should have_db_column(:last_login_at).of_type(:datetime)
+  should have_db_column(:activated_at).of_type(:datetime)
+
   should_have_timestamps
 
   context "a user" do

@@ -12,3 +12,8 @@ gem "haml", ">= 2.2.2"
 gem "mysql"
 gem "feedzirra"
 gem "sitemap_generator"
+
+group :test do
+  gem "shoulda"
+  gem "factory_girl", "= 1.2.4"
+end

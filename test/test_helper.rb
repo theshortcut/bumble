@@ -37,7 +37,8 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def self.should_have_timestamps
-    should_have_db_columns :created_at, :updated_at, :type => :datetime
+    should have_db_column(:created_at).of_type(:datetime)
+    should have_db_column(:updated_at).of_type(:datetime)
   end
 
   def self.should_accept_nested_attributes_for(*attr_names)
@@ -58,9 +59,9 @@ class ActiveSupport::TestCase
     klass = self.name.gsub(/Test$/, '').constantize
 
     context "To support a paperclip attachment named #{attachment}, #{klass}" do
-      should_have_db_column("#{attachment}_file_name",    :type => :string)
-      should_have_db_column("#{attachment}_content_type", :type => :string)
-      should_have_db_column("#{attachment}_file_size",    :type => :integer)
+      should have_db_column("#{attachment}_file_name".to_sym).of_type(:string)
+      should have_db_column("#{attachment}_content_type".to_sym).of_type(:string)
+      should have_db_column("#{attachment}_file_size".to_sym).of_type(:integer)
     end
 
     should "have a paperclip attachment named ##{attachment}" do
@@ -70,8 +71,8 @@ class ActiveSupport::TestCase
   end
 
   def self.should_be_paranoid
-    klass = model_class
-    should_have_db_column :deleted_at
+    klass = self.name.gsub(/Test$/, '').constantize
+    should have_db_column(:deleted_at)
 
     should "be paranoid (it will not be deleted from the database)" do
       # Removed so that it tests the model has declared is_paranoid
