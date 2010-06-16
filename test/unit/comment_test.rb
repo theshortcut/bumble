@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../test_helper.rb")
+require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
 
@@ -14,8 +14,8 @@ class CommentTest < ActiveSupport::TestCase
       @comment = Factory.create(:comment)
     end
 
-    should_be_paranoid
-    should_validate_presence_of :body
-    should_belong_to :user
+    # should_be_paranoid
+    should validate_presence_of :body
+    should belong_to :user
   end
 end

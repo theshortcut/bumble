@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 
-  is_paranoid
+  # is_paranoid
 
   belongs_to :post
   belongs_to :user
@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
   end
 
   def email_post_author
-    Notifier.deliver_new_comment_alert(self) unless user_id == post.user_id
+    Notifier.new_comment_alert(self).deliver unless user_id == post.user_id
   end
 
   def anonymous?

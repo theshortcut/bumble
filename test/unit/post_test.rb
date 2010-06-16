@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../test_helper.rb")
+require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
 
@@ -14,8 +14,8 @@ class PostTest < ActiveSupport::TestCase
       @post = Factory.create(:post)
     end
 
-    should_be_paranoid
-    should_validate_presence_of :user
-    should_belong_to :user
+    # should_be_paranoid
+    should validate_presence_of :user
+    should belong_to :user
   end
 end

@@ -1,7 +1,7 @@
 - if title 
   - unless blog.read_attribute(:title).blank?
     %h2.entry-title= blog.title
--if link.body.nil?
+-if blog.body.nil?
   .entry-content= markdown blog.description
 -else
   .entry-content= blog.body

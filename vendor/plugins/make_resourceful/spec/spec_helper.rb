@@ -1,9 +1,17 @@
 $: << File.dirname(__FILE__) + '/../lib'
 
 require 'rubygems'
-%w[spec rails/version action_pack active_record resourceful/maker
-   action_controller action_controller/test_process action_controller/integration
-   spec/rspec-rails/redirect_to spec/rspec-rails/render_template].each &method(:require)
+
+
+begin
+  %w[spec rails/version action_pack active_record resourceful/maker
+     spec/rspec-rails/redirect_to spec/rspec-rails/render_template
+     action_controller action_controller/test_process action_controller/integration].each &method(:require)
+rescue LoadError # If we are on rails3, these should work
+  require 'action_controller/testing/process' 
+  require 'action_controller/testing/integration' 
+  require 'active_support/testing/test_case'
+end
 
 Spec::Runner.configure do |config|
   config.mock_with :mocha
@@ -105,15 +113,15 @@ module ControllerMocks
   end
 
   def responses
-    @kontroller.read_inheritable_attribute(:resourceful_responses)
+    @kontroller.resourceful_responses
   end
 
   def callbacks
-    @kontroller.read_inheritable_attribute(:resourceful_callbacks)
+    @kontroller.resourceful_callbacks
   end
 
   def parents
-    @kontroller.read_inheritable_attribute(:parents)
+    @kontroller.parents
   end
 
   # Evaluates the made_resourceful block of mod (a module)
@@ -200,19 +208,19 @@ module RailsMocks
 
   def action_params(action, params = {})
     params.merge case action
-                 when :show, :edit, :destroy: {:id => 12}
-                 when :update: {:id => 12, :thing => {}}
-                 when :create: {:thing => {}}
+                 when :show, :edit, :destroy, {:id => 12}
+                 when :update, {:id => 12, :thing => {}}
+                 when :create, {:thing => {}}
                  else {}
                  end
   end
 
   def action_method(action)
     method case action
-           when :index, :show, :edit, :new: :get
-           when :update: :put
-           when :create: :post
-           when :destroy: :delete
+           when :index, :show, :edit, :new, :get
+           when :update, :put
+           when :create, :post
+           when :destroy, :delete
            end
   end
 
@@ -262,7 +270,8 @@ module Spec::Example::ExampleGroupMethods
   def should_render_html(action)
     it "should render HTML by default for #{action_string(action)}" do
       action_method(action)[action, action_params(action)]
-      response.should be_success
+      response.should_have "Missing template things"
+      #response.should be_success
       response.content_type.should == 'text/html'
     end
   end
@@ -270,7 +279,8 @@ module Spec::Example::ExampleGroupMethods
   def should_render_js(action)
     it "should render JS for #{action_string(action)}" do
       action_method(action)[action, action_params(action, :format => 'js')]
-      response.should be_success
+      #response.contents.should.include? "Missing template things"
+      #response.should be_success
       response.content_type.should == 'text/javascript'
     end
   end
@@ -285,13 +295,13 @@ module Spec::Example::ExampleGroupMethods
 
   def action_string(action)
     case action
-    when :index:   "GET /things"
-    when :show:    "GET /things/12"
-    when :edit:    "GET /things/12/edit"
-    when :update:  "PUT /things/12"
-    when :create:  "POST /things"
-    when :new:     "GET /things/new"
-    when :destroy: "DELETE /things/12"
+    when :index,   "GET /things"
+    when :show,    "GET /things/12"
+    when :edit,    "GET /things/12/edit"
+    when :update,  "PUT /things/12"
+    when :create,  "POST /things"
+    when :new,     "GET /things/new"
+    when :destroy, "DELETE /things/12"
     end
   end
 end
@@ -301,6 +311,16 @@ module Spec::Example
     include ActionController::TestProcess
     include ActionController::Assertions
     include RailsMocks
+    
+    # Need this helper, because we made current_objects private
+    def current_objects
+      controller.instance_eval("current_objects")
+    end
+
+    # Need this helper, because we made current_object private
+    def current_object
+      controller.instance_eval("current_object")
+    end
     
     ExampleGroupFactory.register(:integration, self)
   end

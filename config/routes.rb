@@ -1,14 +1,24 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :posts, :collection => {:search => :get}, :has_many => :comments
-  map.resources :comments
-  map.resources :password_resets, :except => [:index, :show, :destroy]
-  map.resources :users
+Bumble::Application.routes.draw do |map|
 
-  map.login     '/login',   :controller => "user_sessions", :action => "new", :conditions => {:method => :get}
-  map.logout    '/logout',  :controller => "user_sessions", :action => "destroy"
-  map.resource  :user_session, :as => 'login', :only => :create
+  resources :posts do
+    collection do
+      get :search
+    end
+    resources :comments
+  end
 
-  map.activate  '/activate/:activation_code', :controller => 'users',         :action => 'activate'
+  resources :comments
 
-  map.root      :controller => "posts"
+  resources :password_resets, :except => [:index, :show, :destroy]
+
+  resources :users
+
+  match 'login',  :to => 'user_sessions#new',     :as => 'login'
+  match 'logout', :to => 'user_sessions#destroy', :as => 'logout'
+  match 'login',  :to => 'user_sessions#create',  :as => 'login'
+
+  match 'activate/:activation_code', :to => 'users#activate'
+
+  root :to => 'posts#index'
+
 end
