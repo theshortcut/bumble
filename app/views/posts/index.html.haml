@@ -6,7 +6,7 @@
       - Post.types.each do |t|
         %li= link_to t, "#new_#{t.downcase}"
     - Post.types.each do |t|
-      - form_for Object.const_get(t).new, :url => posts_path, :html => {:id => "new_#{t.downcase}", :class => 'new_post ui-tabs-hide'} do |form|
+      = form_for Object.const_get(t).new, :url => posts_path, :html => {:id => "new_#{t.downcase}", :class => 'new_post ui-tabs-hide'} do |form|
         = render :partial => "posts/forms/#{t.downcase}", :locals => {:form => form}
         = link_to "Add details", '#', :class => 'more'
         .more= render form

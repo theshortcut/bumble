@@ -1,6 +1,6 @@
 %h2 Edit comment
 
-- form_for [@post, @comment], :url => post_comment_path do |form|
+= form_for [@post, @comment], :url => post_comment_path do |form|
   = render :partial => form
   = form.submit "Update"
   or

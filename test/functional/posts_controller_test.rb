@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  include Authlogic::TestCase
 
   def setup
     @post = Factory.create(:blog)

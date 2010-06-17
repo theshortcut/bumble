@@ -3,7 +3,7 @@
 
 #comments= render @post.comments
 
-- form_for :comment, :url => post_comments_path(@post), :html =>{:class => 'new_comment'} do |form|
+= form_for :comment, :url => post_comments_path(@post), :html =>{:class => 'new_comment'} do |form|
   = render :partial => 'comments/form', :object => form
   #formatting
     %span.bold 

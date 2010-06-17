@@ -1,6 +1,6 @@
 - if title 
   %h2= link_to link.title, link.link_url, :rel => 'external'
 -if link.body.nil?
-  = markdown link.description
+  = markdown(link.description).html_safe
 -else
   = link.body

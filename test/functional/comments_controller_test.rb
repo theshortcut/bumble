@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
+  include Authlogic::TestCase
 
   def setup
     @comment = Factory.create(:comment)

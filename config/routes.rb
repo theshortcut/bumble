@@ -15,7 +15,8 @@ Bumble::Application.routes.draw do |map|
 
   match 'login',  :to => 'user_sessions#new',     :as => 'login'
   match 'logout', :to => 'user_sessions#destroy', :as => 'logout'
-  match 'login',  :to => 'user_sessions#create',  :as => 'login'
+
+  resource :user_session,  :only => :create
 
   match 'activate/:activation_code', :to => 'users#activate'
 

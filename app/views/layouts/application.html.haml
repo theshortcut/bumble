@@ -29,6 +29,6 @@
       = yield
     = render 'layouts/sidebar'
     #footer
-      = link_to "&#x2191;", '#header', :class => 'up', :title => 'Back to top'
+      = link_to "&#x2191;".html_safe, '#header', :class => 'up', :title => 'Back to top'
       Powered by
       = link_to "Bumble", 'http://github.com/andrew/bumble'

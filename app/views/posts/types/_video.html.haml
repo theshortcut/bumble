@@ -2,4 +2,4 @@
   = youtube_embed(video.link_url)
 - else
   = video.video_embed
-.description= markdown video.description
+.description= markdown(video.description).html_safe

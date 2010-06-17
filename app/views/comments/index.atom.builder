@@ -9,7 +9,7 @@ atom_feed(:schema_date => 2008, :root_url => root_url, :url => comments_url(:for
         author.name comment.author
         author.uri comment.author_url
       end
-      entry.content markdown(comment.body), :type => 'html'
+      entry.content markdown(comment.body).html_safe, :type => 'html'
     end
   end
 end

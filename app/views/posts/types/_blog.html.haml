@@ -2,6 +2,6 @@
   - unless blog.read_attribute(:title).blank?
     %h2.entry-title= blog.title
 -if blog.body.nil?
-  .entry-content= markdown blog.description
+  .entry-content= markdown(blog.description).html_safe
 -else
-  .entry-content= blog.body
+  .entry-content= blog.body.html_safe
