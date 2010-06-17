@@ -22,10 +22,18 @@ gem 'gravtastic',        '2.2.0'
 gem 'scrobbler',         '0.2.3'
 gem 'bluecloth',         '2.0.7'
 gem 'haml',              '3.0.12'
-gem 'mysql',             '2.8.1'
 gem 'sitemap_generator', '0.3.3'
 
+group :production do
+  gem 'mysql'
+end
+
+group :development do
+  gem 'sqlite3-ruby'
+end
+
 group :test do
+  gem 'sqlite3-ruby'
   gem 'shoulda'
   gem 'factory_girl'
   gem 'factory_girl_rails'
