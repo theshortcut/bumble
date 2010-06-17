@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def markdown(content)
-    sanitize(super, :tags => %w(a p pre code b strong em i strike ul ol li blockquote br))
+    BlueCloth.new(content).to_html
   end
 
   def youtube_embed(link, width = 500, height = 300)
