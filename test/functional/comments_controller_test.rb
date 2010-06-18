@@ -7,13 +7,14 @@ class CommentsControllerTest < ActionController::TestCase
     @comment = Factory.create(:comment)
   end
   
-  should_route :get,    "posts/1/comments",         :post_id => '1', :controller => :comments, :action => :index
-  should_route :get,    "posts/1/comments/new",     :post_id => '1', :action => :new
-  should_route :post,   "posts/1/comments",         :post_id => '1', :action => :create
-  should_route :get,    "posts/1/comments/1",       :post_id => '1', :action => :show,    :id => '1'
-  should_route :get,    "posts/1/comments/1/edit",  :post_id => '1', :action => :edit,    :id => '1'
-  should_route :put,    "posts/1/comments/1",       :post_id => '1', :action => :update,  :id => '1'
-  should_route :delete, "posts/1/comments/1",       :post_id => '1', :action => :destroy, :id => '1'
+  should route( :get, '/posts/1/comments').to(        :action => :index,   :post_id => 1,
+                                                      :controller => :comments)
+  should route( :get, '/posts/1/comments/new').to(    :action => :new,     :post_id => 1)
+  should route( :post, '/posts/1/comments').to(       :action => :create,  :post_id => 1)
+  should route( :get, '/posts/1/comments/1').to(      :action => :show,    :post_id => 1, :id => 1)
+  should route( :get, '/posts/1/comments/1/edit').to( :action => :edit,    :post_id => 1, :id => 1)
+  should route( :put, '/posts/1/comments/1').to(      :action => :update,  :post_id => 1, :id => 1)
+  should route( :delete, '/posts/1/comments/1').to(   :action => :destroy, :post_id => 1, :id => 1)
 
   context "logged in" do
     setup do
@@ -26,8 +27,8 @@ class CommentsControllerTest < ActionController::TestCase
        get :show, :id => @comment.id, :post_id => @comment.post.id
       end
 
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
-      should_not_set_the_flash
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
+      should_not set_the_flash
     end
 
     context "on GET to :new" do
@@ -35,10 +36,10 @@ class CommentsControllerTest < ActionController::TestCase
         get :new, :post_id => @comment.post.id
       end
 
-      should_assign_to :comment
-      should_respond_with :success
-      should_render_template :new
-      should_not_set_the_flash
+      should assign_to :comment
+      should respond_with :success
+      should render_template :new
+      should_not set_the_flash
     end
 
     context "on GET to :index" do
@@ -46,8 +47,8 @@ class CommentsControllerTest < ActionController::TestCase
        get :index, :post_id => @comment.post.to_param
       end
 
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => 'comments')}
-      should_not_set_the_flash
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => 'comments')}
+      should_not set_the_flash
     end
 
     context "on POST to :create" do
@@ -60,9 +61,9 @@ class CommentsControllerTest < ActionController::TestCase
         assert_equal @old_count + 1, Comment.count
       end
 
-      should_assign_to :comment
-      should_set_the_flash_to 'Create successful!'
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
+      should assign_to :comment
+      should set_the_flash.to('Create successful!')
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
     end
 
     context "on GET to :edit for first record" do
@@ -70,10 +71,10 @@ class CommentsControllerTest < ActionController::TestCase
        get :edit, :id => @comment.id, :post_id => @comment.post.id
       end
 
-      should_assign_to :comment
-      should_respond_with :success
-      should_render_template :edit
-      should_not_set_the_flash
+      should assign_to :comment
+      should respond_with :success
+      should render_template :edit
+      should_not set_the_flash
     end
 
     context "on PUT to :update" do
@@ -81,9 +82,9 @@ class CommentsControllerTest < ActionController::TestCase
         put :update, :id => @comment.id, :post_id => @comment.post.id, :comment => {}
       end
 
-      should_assign_to :comment
-      should_set_the_flash_to 'Save successful!'
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
+      should assign_to :comment
+      should set_the_flash.to('Save successful!')
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
     end
 
     context "on DELETE to :destroy" do
@@ -96,8 +97,8 @@ class CommentsControllerTest < ActionController::TestCase
         assert_equal @old_count - 1, Comment.count
       end
 
-      should_set_the_flash_to 'Record deleted!'
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param)}
+      should set_the_flash.to('Record deleted!')
+      should redirect_to('the comments post') { post_url(@comment.post.to_param)}
     end
   end
   
@@ -107,8 +108,8 @@ class CommentsControllerTest < ActionController::TestCase
        get :show, :id => @comment.id, :post_id => @comment.post.id
       end
 
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
-      should_not_set_the_flash
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
+      should_not set_the_flash
     end
 
     context "on GET to :new" do
@@ -116,10 +117,10 @@ class CommentsControllerTest < ActionController::TestCase
         get :new, :post_id => @comment.post.id
       end
 
-      should_assign_to :comment
-      should_respond_with :success
-      should_render_template :new
-      should_not_set_the_flash
+      should assign_to :comment
+      should respond_with :success
+      should render_template :new
+      should_not set_the_flash
     end
 
     context "on GET to :index" do
@@ -127,8 +128,8 @@ class CommentsControllerTest < ActionController::TestCase
        get :index, :post_id => @comment.post.id
       end
 
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => 'comments')}
-      should_not_set_the_flash
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => 'comments')}
+      should_not set_the_flash
     end
 
     context "on POST to :create" do
@@ -141,9 +142,9 @@ class CommentsControllerTest < ActionController::TestCase
         assert_equal @old_count + 1, Comment.count
       end
 
-      should_assign_to :comment
-      should_set_the_flash_to 'Create successful!'
-      should_redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
+      should assign_to :comment
+      should set_the_flash.to('Create successful!')
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
     end
 
     context "on GET to :edit for first record" do

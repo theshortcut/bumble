@@ -81,12 +81,20 @@ class ActiveSupport::TestCase
   #end
 
   def self.should_be_denied_access(message = 'You must be logged in to do that!')
-    should_set_the_flash_to message
-    should_redirect_to('the login page') { login_url}
+    should set_the_flash.to(message)
+    should redirect_to('the login page') { login_url}
   end
 
   def dom_id(object)
     "#{object.class.to_s.downcase}_#{object.id}"
   end
 
+end
+
+# ruby 1.9 hack for shoulda
+module Test
+  module Unit
+    module AssertionFailedError
+    end
+  end
 end

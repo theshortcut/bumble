@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.types
-    Dir["#{RAILS_ROOT}/app/models/posts/*.rb"].each { |f| require_dependency f }
+    Dir["#{Rails.root}/app/models/posts/*.rb"].each { |f| require_dependency f }
     self.subclasses.collect(&:to_s).sort
   end
 

@@ -5,20 +5,21 @@ class PasswordResetsControllerTest < ActionController::TestCase
     @user = Factory.create(:user)
   end
   
-  should_route :get,  "/password_resets",                     :controller => :password_resets, :action => :index
-  should_route :get,  "/password_resets/new",                 :action => :new
-  should_route :post, "/password_resets",                     :action => :create
-  should_route :get,  "/password_resets/1234567abcdefg/edit", :action => :edit,    :id => '1234567abcdefg'
-  should_route :put,  "/password_resets/1234567abcdefg",      :action => :update,  :id => '1234567abcdefg'
+  should route( :get, '/password_resets').to(                     :action => :index,
+                                                                  :controller => :password_resets)
+  should route( :get, '/password_resets/new').to(                 :action => :new)
+  should route( :post, '/password_resets').to(                    :action => :create)
+  should route( :get, '/password_resets/1234567abcdefg/edit').to( :action => :edit,   :id => '1234567abcdefg')
+  should route( :put, '/password_resets/1234567abcdefg/edit').to( :action => :update, :id => '1234567abcdefg')
 
   context "on GET to :new" do
     setup do
       get :new
     end
 
-    should_respond_with :success
-    should_render_template :new
-    should_not_set_the_flash
+    should respond_with :success
+    should render_template :new
+    should_not set_the_flash
   end
 
   context "on POST to :create" do
@@ -26,9 +27,9 @@ class PasswordResetsControllerTest < ActionController::TestCase
       post :create, :email => @user.email
     end
 
-    should_assign_to :user
-    should_set_the_flash_to "Instructions to reset your password have been emailed to you. Please check your email."
-    should_redirect_to('the created password_reset') { root_url}
+    should assign_to :user
+    should set_the_flash.to('Instructions to reset your password have been emailed to you. Please check your email.')
+    should redirect_to('the created password_reset') { root_url}
   end
 
   context "a user who has requested a password reset" do
@@ -42,10 +43,10 @@ class PasswordResetsControllerTest < ActionController::TestCase
        get :edit, :id => @user.perishable_token
       end
 
-      should_assign_to :user
-      should_respond_with :success
-      should_render_template :edit
-      should_not_set_the_flash
+      should assign_to :user
+      should respond_with :success
+      should render_template :edit
+      should_not set_the_flash
     end
 
     context "on PUT to :update" do
@@ -53,9 +54,9 @@ class PasswordResetsControllerTest < ActionController::TestCase
         put :update, :id => @user.perishable_token, :user => {}
       end
 
-      should_assign_to :user
-      should_set_the_flash_to "Password successfully updated"
-      should_redirect_to('the updated password_reset') { root_path}
+      should assign_to :user
+      should set_the_flash.to('Password successfully updated')
+      should redirect_to('the updated password_reset') { root_path}
     end
   end
 end
