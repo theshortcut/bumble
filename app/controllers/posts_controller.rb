@@ -1,49 +1,21 @@
-class PostsController < ApplicationController
+class PostsController < InheritedResources::Base
   before_filter :require_user, :except => [:index, :show, :search]
 
-  make_resourceful do
-    actions :all
-
-    response_for :index do |format|
-      format.html
-      format.atom
-    end
-
-    response_for :destroy do |format|
-      format.html do
-        flash[:notice] = "Record deleted!"
-        redirect_to posts_path
-      end
-      format.js { render :nothing => true }
-    end
-  end
-
   def create
-    build_object
-    load_object
-    current_object.user = current_user
-    if params[:commit] == "Preview"
-      current_object.valid?
-      respond_to do |format|
-        format.js { render :partial => 'preview', :locals => {:post => current_object} }
-        format.html do
-          flash[:notice] = 'Create successful!'
-          redirect_to posts_path
-        end
-      end
-    else
-      if current_object.save
-        respond_to do |format|
-          format.js { render :partial => 'post', :locals => {:post => current_object} }
-          format.html do
-            flash[:notice] = 'Create successful!'
-            redirect_to post_path(current_object)
-          end
-        end
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    create! do |format|
+      if params[:commit] == 'Preview'
+        @post.valid?
+        format.js { render :partial => 'preview', :locals => {:post => @post} }
+        format.html { redirect_to posts_path }
       else
-        respond_to do |format|
-          format.js   { render :text => current_object.errors.full_messages.join(', ').capitalize, :status => 403 }
-          format.html { render :action => "new" }
+        if @post.save
+          format.js { render :partial => 'post', :locals => {:post => @post} }
+          format.html { redirect_to post_path(@post) }
+        else
+          format.js { render :text => @post.errors.full_messages.join(', ').capitalize, :status => 403 }
+          format.html { render :action => 'new' }
         end
       end
     end
@@ -59,29 +31,16 @@ class PostsController < ApplicationController
     end
   end
 
-  private
+  protected
 
-  def build_object
-    Post.types.each do |t|
-      if params.include?(t.downcase)
-        @current_object = Object.const_get(t).new(params[t.downcase])
-      end
+    def collection
+      @posts ||= end_of_association_chain.paginate( :page => params[:page],
+                                                    :order => 'published_at DESC',
+                                                    :per_page => (iphone? ? 5 : 10),
+                                                    :include => :comments)
     end
-    @current_object ||= Blog.new
-  end
 
-  def current_objects
-    @current_object ||= current_model.paginate  :page => params[:page],
-                                                :order => 'published_at DESC',
-                                                :per_page => (iphone? ? 5 : 10),
-                                                :include => :comments
-  end
-
-  def current_model
-    current_user ? super : Post.published.all_public
-  end
-
-  def current_object
-    @current_object ||= current_model.find_by_permalink_or_id(params[:id])
-  end
+    def resource
+      @post ||= end_of_association_chain.find_by_permalink_or_id(params[:id])
+    end
 end

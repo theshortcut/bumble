@@ -1,10 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < InheritedResources::Base
   before_filter :require_user, :except => [:activate]
-
-  make_resourceful do
-    actions :all, :except => :create
-    member_actions :delete
-  end
 
   def create
     @user = User.new(params[:user])
@@ -29,9 +24,9 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  protected
 
-  def current_objects
-    @current_object ||= current_model.paginate :page => params[:page]
-  end
+    def collection
+      @users ||= end_of_association_chain.paginate( :page => params[:page] )
+    end
 end

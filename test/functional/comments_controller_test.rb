@@ -83,7 +83,7 @@ class CommentsControllerTest < ActionController::TestCase
       end
 
       should assign_to :comment
-      should set_the_flash.to('Save successful!')
+      should set_the_flash.to(/successful/i)
       should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(@comment))}
     end
 
@@ -97,8 +97,8 @@ class CommentsControllerTest < ActionController::TestCase
         assert_equal @old_count - 1, Comment.count
       end
 
-      should set_the_flash.to('Record deleted!')
-      should redirect_to('the comments post') { post_url(@comment.post.to_param)}
+      should set_the_flash.to(/destroyed/i)
+      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => 'comments')}
     end
   end
   

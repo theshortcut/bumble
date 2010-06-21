@@ -140,7 +140,7 @@ class PostsControllerTest < ActionController::TestCase
       end
 
       should assign_to :post
-      should set_the_flash.to('Create successful!')
+      should set_the_flash.to(/successful/i)
       should redirect_to('the created post') { post_url('testing')}
     end
 
@@ -161,7 +161,7 @@ class PostsControllerTest < ActionController::TestCase
       end
 
       should assign_to :post
-      should set_the_flash.to('Save successful!')
+      should set_the_flash.to(/successful/i)
       should redirect_to('the updated post') { post_url(@post)}
     end
 
@@ -175,7 +175,7 @@ class PostsControllerTest < ActionController::TestCase
         assert_equal @old_count - 1, Post.count
       end
 
-      should set_the_flash.to('Record deleted!')
+      should set_the_flash.to(/deleted/i)
       should redirect_to('list of posts') { posts_url }
     end
   end
