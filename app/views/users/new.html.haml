@@ -2,6 +2,11 @@
   New User
 
 = form_for @user do |form|
-  = form.error_messages
+  - if @user.errors.any?
+    #errorExplanation
+      %p The following errors prohibited this form from being saved:</h2>
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
   = render form
   = form.submit

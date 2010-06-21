@@ -1,7 +1,12 @@
 %h2 Change My Password
 
 = form_for @user, :url => password_reset_path, :method => :put do |f|
-  = f.error_messages
+  - if @user.errors.any?
+    #errorExplanation
+      %p The following errors prohibited this form from being saved:</h2>
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
   .field= f.password_field :password, :placeholder => 'Password..'
   .field= f.password_field :password_confirmation, :placeholder => 'Password Confirmation..'
 
