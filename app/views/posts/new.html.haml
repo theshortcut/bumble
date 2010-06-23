@@ -1,7 +1,7 @@
 %h2 New post
 
-= form_for @post, :url => posts_path do |form|
-  = render :partial => "posts/forms/#{@post.type.downcase}", :locals => {:form => form}
+= form_for resource, :url => posts_path do |form|
+  = render :partial => "posts/forms/#{resource_class.to_s.downcase}", :locals => {:form => form}
   = render :partial => form
   = form.submit "Create"
   or

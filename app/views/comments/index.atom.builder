@@ -1,4 +1,4 @@
-atom_feed(:schema_date => 2008, :root_url => root_url, :url => comments_url(:format => :atom)) do |feed|
+atom_feed(:schema_date => 2008, :root_url => root_url, :url => post_comments_url(:format => :atom)) do |feed|
   feed.title "Comments Feed"
   feed.updated @comments.first.updated_at
 

@@ -59,11 +59,12 @@ class CommentsControllerTest < ActionController::TestCase
 
       should "create a new comment" do
         assert_equal @old_count + 1, Comment.count
+        assert assigns[:comment].valid?
       end
 
       should assign_to :comment
-      should set_the_flash.to('Create successful!')
-      should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
+      should set_the_flash.to(/successful/i)
+      should redirect_to('the comments post') { post_url(assigns(:comment).post.to_param, :anchor => dom_id(assigns(:comment)))}
     end
 
     context "on GET to :edit for first record" do
@@ -143,7 +144,7 @@ class CommentsControllerTest < ActionController::TestCase
       end
 
       should assign_to :comment
-      should set_the_flash.to('Create successful!')
+      should set_the_flash.to(/successful/i)
       should redirect_to('the comments post') { post_url(@comment.post.to_param, :anchor => dom_id(assigns(:comment)))}
     end
 

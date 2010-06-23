@@ -136,6 +136,7 @@ class PostsControllerTest < ActionController::TestCase
       end
 
       should "create a new post" do
+        assert_equal "", assigns(:post).errors.full_messages.join(', ')
         assert_equal @old_count + 1, Post.count
       end
 
@@ -175,7 +176,7 @@ class PostsControllerTest < ActionController::TestCase
         assert_equal @old_count - 1, Post.count
       end
 
-      should set_the_flash.to(/deleted/i)
+      should set_the_flash.to(/destroyed/i)
       should redirect_to('list of posts') { posts_url }
     end
   end

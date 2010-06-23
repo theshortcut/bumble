@@ -5,12 +5,11 @@ class PasswordResetsControllerTest < ActionController::TestCase
     @user = Factory.create(:user)
   end
   
-  should route( :get, '/password_resets').to(                     :action => :index,
+  should route( :get, '/password_resets/new').to(                 :action => :new,
                                                                   :controller => :password_resets)
-  should route( :get, '/password_resets/new').to(                 :action => :new)
   should route( :post, '/password_resets').to(                    :action => :create)
   should route( :get, '/password_resets/1234567abcdefg/edit').to( :action => :edit,   :id => '1234567abcdefg')
-  should route( :put, '/password_resets/1234567abcdefg/edit').to( :action => :update, :id => '1234567abcdefg')
+  should route( :put, '/password_resets/1234567abcdefg').to( :action => :update, :id => '1234567abcdefg')
 
   context "on GET to :new" do
     setup do
