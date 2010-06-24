@@ -1,0 +1,7 @@
+- if title 
+  - unless post.read_attribute(:title).blank?
+    %h2.entry-title= post.title
+-if post.body.nil?
+  .entry-content= markdown(post.description).html_safe
+-else
+  .entry-content= post.body.html_safe
