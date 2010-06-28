@@ -47,38 +47,39 @@ class ActiveSupport::TestCase
     end
   end
 
-  #def self.should_be_paranoid
-    #klass = self.name.gsub(/Test$/, '').constantize
-    #should have_db_column(:deleted_at)
+  def self.should_be_paranoid
+    puts self.methods.sort
+    klass = self.name.gsub(/Test$/, '').constantize
+    should have_db_column(:deleted_at)
 
-    #should "be paranoid (it will not be deleted from the database)" do
-      ## Removed so that it tests the model has declared is_paranoid
-      ## assert klass.is_paranoid
-      #assert klass.included_modules.include?(IsParanoid::InstanceMethods)
-    #end
+    should "be paranoid (it will not be deleted from the database)" do
+      # Removed so that it tests the model has declared is_paranoid
+      # assert klass.is_paranoid
+      assert klass.methods.include?(:find_with_destroyed)
+    end
 
-    #should "not have a value for deleted_at" do
-      #assert object = klass.find(:first)
-      #assert_nil object.deleted_at
-    #end
+    should "not have a value for deleted_at" do
+      assert object = klass.find(:first)
+      assert_nil object.deleted_at
+    end
 
-    #context "when destroyed" do
-      #setup do
-        #assert object = klass.find(:first), "This context requires there to be an existing #{klass}"
-        #@deleted_id = object.id
-        #object.destroy
-      #end
+    context "when destroyed" do
+      setup do
+        assert object = klass.find(:first), "This context requires there to be an existing #{klass}"
+        @deleted_id = object.id
+        object.destroy
+      end
 
-      #should "not be found" do
-        #assert_raise(ActiveRecord::RecordNotFound) { klass.find(@deleted_id) }
-      #end
+      should "not be found" do
+        assert_raise(ActiveRecord::RecordNotFound) { klass.find(@deleted_id) }
+      end
 
-      #should "still exist in the database" do
-        #deleted_object = klass.find_with_destroyed(@deleted_id)
-        #assert_not_nil deleted_object.deleted_at
-      #end
-    #end
-  #end
+      should "still exist in the database" do
+        deleted_object = klass.find_with_destroyed(@deleted_id)
+        assert_not_nil deleted_object.deleted_at
+      end
+    end
+  end
 
   def self.should_be_denied_access(message = 'You must be logged in to do that!')
     should set_the_flash.to(message)

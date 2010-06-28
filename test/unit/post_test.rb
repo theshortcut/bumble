@@ -14,7 +14,7 @@ class PostTest < ActiveSupport::TestCase
       @post = Factory.create(:post)
     end
 
-    # should_be_paranoid
+    should_be_paranoid
     should validate_presence_of :user
     should belong_to :user
   end

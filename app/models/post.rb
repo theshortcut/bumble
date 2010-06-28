@@ -32,25 +32,25 @@ class Post < ActiveRecord::Base
     read_attribute(:title).blank? ? "Post #{id}" : read_attribute(:title)
   end
 
-  #define_index do
-    ## fields
-    #indexes :title
-    #indexes :link_url
-    #indexes :image_url
-    #indexes :video_embed
-    #indexes :description
-    #indexes :quote
-    #indexes :permalink
-    #indexes :type
-    #indexes :via
+  define_index do
+    # fields
+    indexes :title
+    indexes :link_url
+    indexes :image_url
+    indexes :video_embed
+    indexes :description
+    indexes :quote
+    indexes :permalink
+    indexes :type
+    indexes :via
 
-    #indexes comments.body, :as => :comments_body
+    indexes comments.body, :as => :comments_body
 
-    ## attributes
-    #has :created_at, :updated_at, :published_at, :user_id
+    # attributes
+    has :created_at, :updated_at, :published_at, :user_id
 
-    #where 'posts.deleted_at IS NULL AND posts.publicly_viewable = 1'
+    where 'posts.deleted_at IS NULL AND posts.publicly_viewable = 1'
 
-    #set_property :delta => true
-  #end
+    set_property :delta => true
+  end
 end

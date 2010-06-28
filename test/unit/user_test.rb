@@ -27,7 +27,7 @@ class UserTest < ActiveSupport::TestCase
       @user = Factory.create(:user)
     end
 
-    # should_be_paranoid
+    should_be_paranoid
     should validate_presence_of :first_name
 
     should "update activated_at when activated" do
