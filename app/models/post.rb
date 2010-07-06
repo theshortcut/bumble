@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
 
   def self.types
     Dir["#{Rails.root}/app/models/posts/*.rb"].each { |f| require_dependency f }
-    self.subclasses.collect(&:to_s).sort
+    self.descendants.collect(&:to_s).sort
   end
 
   def self.find_by_permalink_or_id(param)
