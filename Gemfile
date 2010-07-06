@@ -15,9 +15,7 @@ gem 'thinking-sphinx',     :git => "#{GIT_PROTOCOL}://github.com/freelancing-god
                            :branch => 'rails3',
                            :require => 'thinking_sphinx'
 
-gem 'whenever',            :git => "#{GIT_PROTOCOL}://github.com/rlivsey/whenever.git",
-                           :branch => 'rails3'
-
+gem 'whenever',            :git => "#{GIT_PROTOCOL}://github.com/javan/whenever.git"
 gem 'inherited_resources', :git => "#{GIT_PROTOCOL}://github.com/josevalim/inherited_resources.git"
 gem 'authlogic',           :git => "#{GIT_PROTOCOL}://github.com/scrum8/authlogic.git"
 gem 'feedzirra',           :git => "#{GIT_PROTOCOL}://github.com/pauldix/feedzirra.git"

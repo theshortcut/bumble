@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   acts_as_authentic
 
-  # is_paranoid
+  is_paranoid
 
   validates_presence_of :first_name
 

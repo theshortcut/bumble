@@ -48,7 +48,6 @@ class ActiveSupport::TestCase
   end
 
   def self.should_be_paranoid
-    puts self.methods.sort
     klass = self.name.gsub(/Test$/, '').constantize
     should have_db_column(:deleted_at)
 

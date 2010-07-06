@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  # is_paranoid
+  is_paranoid
 
   has_many :comments, :dependent => :destroy
   belongs_to :user

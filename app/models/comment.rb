@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 
-  # is_paranoid
+  is_paranoid
 
   belongs_to :post
   belongs_to :user
