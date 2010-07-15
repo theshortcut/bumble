@@ -6,16 +6,11 @@ GIT
     thinking-sphinx (2.0.0.rc1)
       activerecord (>= 3.0.0.beta3)
       riddle (>= 1.0.10)
-    thinking-sphinx (2.0.0.rc1)
-      activerecord (>= 3.0.0.beta3)
-      riddle (>= 1.0.10)
 
 GIT
   remote: http://github.com/javan/whenever.git
   revision: 3796828
   specs:
-    whenever (0.5.0)
-      chronic (>= 0.2.3)
     whenever (0.5.0)
       chronic (>= 0.2.3)
 
@@ -26,9 +21,6 @@ GIT
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    inherited_resources (1.1.2)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
 
 GIT
   remote: http://github.com/mislav/will_paginate.git
@@ -36,19 +28,11 @@ GIT
   branch: rails3
   specs:
     will_paginate (3.0.pre)
-    will_paginate (3.0.pre)
 
 GIT
   remote: http://github.com/pauldix/feedzirra.git
   revision: 455e65b
   specs:
-    feedzirra (0.0.23)
-      activesupport (>= 2.0.0)
-      builder (>= 2.1.2)
-      curb (>= 0.2.3)
-      loofah (>= 0.3.1)
-      nokogiri (> 0.0.0)
-      sax-machine (>= 0.0.12)
     feedzirra (0.0.23)
       activesupport (>= 2.0.0)
       builder (>= 2.1.2)
@@ -64,8 +48,6 @@ GIT
   specs:
     loofah (0.4.8)
       nokogiri (>= 1.3.3)
-    loofah (0.4.8)
-      nokogiri (>= 1.3.3)
 
 GIT
   remote: http://github.com/rails/arel.git
@@ -73,28 +55,14 @@ GIT
   specs:
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
-    arel (0.4.0)
-      activesupport (>= 3.0.0.beta)
 
 GIT
   remote: http://github.com/rails/rails.git
-  revision: 92ff71b
+  revision: 0c2c893
   specs:
     actionmailer (3.0.0.beta4)
       actionpack (= 3.0.0.beta4)
       mail (~> 2.2.3)
-    actionmailer (3.0.0.beta4)
-      actionpack (= 3.0.0.beta4)
-      mail (~> 2.2.3)
-    actionpack (3.0.0.beta4)
-      activemodel (= 3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-      builder (~> 2.1.2)
-      erubis (~> 2.6.6)
-      i18n (~> 0.4.1)
-      rack (~> 1.2.1)
-      rack-test (~> 0.5.4)
-      tzinfo (~> 0.3.16)
     actionpack (3.0.0.beta4)
       activemodel (= 3.0.0.beta4)
       activesupport (= 3.0.0.beta4)
@@ -108,15 +76,6 @@ GIT
       activesupport (= 3.0.0.beta4)
       builder (~> 2.1.2)
       i18n (~> 0.4.1)
-    activemodel (3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-      builder (~> 2.1.2)
-      i18n (~> 0.4.1)
-    activerecord (3.0.0.beta4)
-      activemodel (= 3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-      arel (~> 0.4.0)
-      tzinfo (~> 0.3.16)
     activerecord (3.0.0.beta4)
       activemodel (= 3.0.0.beta4)
       activesupport (= 3.0.0.beta4)
@@ -125,10 +84,6 @@ GIT
     activeresource (3.0.0.beta4)
       activemodel (= 3.0.0.beta4)
       activesupport (= 3.0.0.beta4)
-    activeresource (3.0.0.beta4)
-      activemodel (= 3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-    activesupport (3.0.0.beta4)
     activesupport (3.0.0.beta4)
     rails (3.0.0.beta4)
       actionmailer (= 3.0.0.beta4)
@@ -136,21 +91,8 @@ GIT
       activerecord (= 3.0.0.beta4)
       activeresource (= 3.0.0.beta4)
       activesupport (= 3.0.0.beta4)
-      bundler (>= 1.0.0.beta.2)
+      bundler (>= 1.0.0.beta.3)
       railties (= 3.0.0.beta4)
-    rails (3.0.0.beta4)
-      actionmailer (= 3.0.0.beta4)
-      actionpack (= 3.0.0.beta4)
-      activerecord (= 3.0.0.beta4)
-      activeresource (= 3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-      bundler (>= 1.0.0.beta.2)
-      railties (= 3.0.0.beta4)
-    railties (3.0.0.beta4)
-      actionpack (= 3.0.0.beta4)
-      activesupport (= 3.0.0.beta4)
-      rake (>= 0.8.3)
-      thor (~> 0.13.7)
     railties (3.0.0.beta4)
       actionpack (= 3.0.0.beta4)
       activesupport (= 3.0.0.beta4)
@@ -163,8 +105,6 @@ GIT
   specs:
     authlogic (2.1.4.pre1)
       activesupport
-    authlogic (2.1.4.pre1)
-      activesupport
 
 GIT
   remote: http://github.com/theshortcut/is_paranoid.git
@@ -172,107 +112,57 @@ GIT
   specs:
     is_paranoid (0.0.2)
       activerecord (>= 2.3.0)
-    is_paranoid (0.0.2)
-      activerecord (>= 2.3.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
-    abstract (1.0.0)
     bluecloth (2.0.7-x86-mingw32)
-    bluecloth (2.0.7-x86-mingw32)
-    builder (2.1.2)
     builder (2.1.2)
     chronic (0.2.3)
       hoe (>= 1.2.1)
-    chronic (0.2.3)
-      hoe (>= 1.2.1)
-    curb (0.7.7.1)
     curb (0.7.7.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    erubis (2.6.6)
-      abstract (>= 1.0.0)
-    factory_girl (1.3.1)
     factory_girl (1.3.1)
     factory_girl_rails (1.0)
       factory_girl (~> 1.3)
       rails (>= 3.0.0.beta4)
-    factory_girl_rails (1.0)
-      factory_girl (~> 1.3)
-      rails (>= 3.0.0.beta4)
-    gravtastic (2.2.0)
     gravtastic (2.2.0)
     haml (3.0.12)
-    haml (3.0.12)
-    has_scope (0.5.0)
     has_scope (0.5.0)
     hoe (2.6.1)
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
-    hoe (2.6.1)
-      rake (>= 0.8.7)
-      rubyforge (>= 2.0.4)
-    hpricot (0.8.2)
     hpricot (0.8.2)
     i18n (0.4.1)
-    i18n (0.4.1)
-    json_pure (1.4.3)
     json_pure (1.4.3)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
-    mail (2.2.5)
-      activesupport (>= 2.3.6)
-      mime-types
-      treetop (>= 1.4.5)
-    mime-types (1.16)
     mime-types (1.16)
     mysql (2.8.1-x86-mingw32)
-    mysql (2.8.1-x86-mingw32)
-    nokogiri (1.4.2.1-x86-mingw32)
     nokogiri (1.4.2.1-x86-mingw32)
     polyglot (0.3.1)
-    polyglot (0.3.1)
-    rack (1.2.1)
     rack (1.2.1)
     rack-test (0.5.4)
       rack (>= 1.0)
-    rack-test (0.5.4)
-      rack (>= 1.0)
-    rake (0.8.7)
     rake (0.8.7)
     responders (0.6.1)
-    responders (0.6.1)
-    riddle (1.0.11)
     riddle (1.0.11)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
-    sax-machine (0.0.15)
-      nokogiri (> 0.0.0)
     sax-machine (0.0.15)
       nokogiri (> 0.0.0)
     scrobbler (0.2.3)
       activesupport (>= 1.4.2)
       hpricot (>= 0.4.86)
-    scrobbler (0.2.3)
-      activesupport (>= 1.4.2)
-      hpricot (>= 0.4.86)
-    shoulda (2.11.1)
     shoulda (2.11.1)
     sitemap_generator (0.3.3)
-    sitemap_generator (0.3.3)
-    thor (0.13.7)
     thor (0.13.7)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
-    treetop (1.4.8)
-      polyglot (>= 0.3.1)
-    tzinfo (0.3.22)
     tzinfo (0.3.22)
 
 PLATFORMS
